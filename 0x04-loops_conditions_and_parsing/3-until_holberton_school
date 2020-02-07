@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Script to display 'Holberton School' 10 times
+count=0
+until [ $count == 10 ]
+do
+	echo "Holberton School"
+	count=$((count + 1))
+done
