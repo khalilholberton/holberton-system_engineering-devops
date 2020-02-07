@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Script to display 'bad luck' when 4, 'good luck' when 8 else 'Holberton School'
 i=1
-while ((i < 10))
+while ((i < 11))
 do
       if (( i == 4))
       then
