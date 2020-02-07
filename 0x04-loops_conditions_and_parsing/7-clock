@@ -12,6 +12,6 @@ do
         echo "$minute"
         minute=$((minute+1))
     done
-    
+    minute=1
     hour=$((hour+1))
 done
