@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#script create a file and display its PID and handle SIGTERM SIGINT SIGQUIT
+
+pgrep -f 100-process_and_pid_file > /var/run/holbertonscript.pid
+trap "echo 'I hate the kill command'; rm /var/run/holbertonscript.pid; exit" SIGTERM
+trap "echo 'Y U no love me?!'" SIGINT
+while((1))
+do
+echo "To infinity and beyond"
+sleep 2
+done
