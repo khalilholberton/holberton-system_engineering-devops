@@ -1,0 +1,4 @@
+# configuration of ssh client
+Host *
+    IdentityFile ~/.ssh/holberton
+    PasswordAuthentication no
