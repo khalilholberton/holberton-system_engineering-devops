@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Debug NGINX server
+# Debug NGINX server to listen to prot 80
 
-sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-service nginx start
-pkill -o nginx
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx start
+pkill -f -SIGKILL  "/usr/sbin/nginx"
