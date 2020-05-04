@@ -3,28 +3,29 @@
  Python script to export data in the JSON format.
 """
 
-import requests
-from sys import argv
-import json
-
 if __name__ == "__main__":
 
-    users = requests.get('https://jsonplaceholder.typicode.com/users').json()
-    user_dict = {}
-    uname_dict = {}
+    import requests
+    import json
+
+    users = requests.get("http://jsonplaceholder.typicode.com/users").json()
+    todo = requests.get("http://jsonplaceholder.typicode.com/todos").json()
+    finaljs = {}
+
     for user in users:
-        user_id = user.get('id')
-        user_dict[user_id] = []
-        uname_dict[user_id] = user.get('username')
+        id = user.get("id")
+        username = user.get("username")
+        list = []
 
-    todo = requests.get('https://jsonplaceholder.typicode.com/todos').json()
-    for task in todo:
-        task_dict = {}
-        user_id = task.get('userId')
-        task_dict['username'] = uname_dict.get(user_id)
-        task_dict['task'] = task.get('title')
-        task_dict['completed'] = task.get('completed')
-        user_dict.get(user_id).append(task_dict)
+        for task in todo:
+            if (task.get("userId") == id and task.get("completed")):
+                d = {}
+                d["task"] = task.get("title")
+                d["completed"] = task.get("completed")
+                d["username"] = username
+                list.append(d)
 
-    with open('todo_all_employees.json', 'w') as jsonfile:
-        json.dump(user_dict, jsonfile)
+        finaljs[id] = list
+
+    with open("todo_all_employees.json", 'w+') as jsfile:
+        json.dump(finaljs, jsfile)
