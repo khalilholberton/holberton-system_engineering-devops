@@ -5,24 +5,22 @@
 
 if __name__ == "__main__":
     import requests
-    from sys import argv
+    import sys
     import json
 
-    id = argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(id), verify=False).json()
-    todo = requests.get("https://jsonplaceholder.typicode.com/todos?ID={}".
-                        format(id), verify=False).json()
-    username = user.get('username')
-    tasks_list = []
-    for task in todo:
-        task_dict = {}
-        task_dict["task"] = task.get('title')
-        task_dict["completed"] = task.get('completed')
-        task_dict["username"] = username
-        tasks_list.append(task_dict)
+    id = sys.argv[1]
+    user = requests.get("http://jsonplaceholder.typicode.com/users/{}"
+                        .format(id)).json().get("username")
+    todo = requests.get("http://jsonplaceholder.typicode.com/todos").json()
 
-    js_task = {}
-    js_task[id] = tasks_list
-    with open("{}.json".format(id), 'w') as jsfile:
-        json.dump(js_task, jsfile)
+    mylist = []
+    for task in todo:
+        if (task.get("userId") == int(id)):
+            d = {}
+            d["task"] = task.get("title")
+            d["completed"] = task.get("completed")
+            d["username"] = user
+            mylist.append(d)
+
+    with open("{}.json".format(id), 'w+') as jsonfile:
+        json.dump({id: mylist}, jsonfile)
