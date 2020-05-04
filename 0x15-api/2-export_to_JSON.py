@@ -9,19 +9,20 @@ if __name__ == "__main__":
     import json
 
     id = argv[1]
-    url = 'https://jsonplaceholder.typicode.com/users'
-    user = requests.get(url + '/{}'.format(id)).json()
-    todo = requests.get(url + '/{}/todos'.format(id)).json()
-
-    tasks = []
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
+                        format(id), verify=False).json()
+    todo = requests.get("https://jsonplaceholder.typicode.com/todos?ID={}".
+                        format(id), verify=False).json()
+    username = user.get('username')
+    tasks_list = []
     for task in todo:
         task_dict = {}
-        task_dict['task'] = task.get('title')
-        task_dict['completed'] = task.get('completed')
-        task_dict['username'] = user.get('username')
-        tasks.append(task_dict)
+        task_dict["task"] = task.get('title')
+        task_dict["completed"] = task.get('completed')
+        task_dict["username"] = username
+        tasks_list.append(task_dict)
 
-    jsonfile = {}
-    jsonfile[id] = tasks
-    with open("{}.json".format(id), 'w') as f:
-        json.dump(jsonfile, f)
+    js_task = {}
+    js_task[id] = tasks_list
+    with open("{}.json".format(id), 'w') as jsfile:
+        json.dump(js_task, jsfile)
