@@ -19,6 +19,6 @@ if __name__ == "__main__":
         filler = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         for task in todo:
             filler.writerow([id,
-                              user.get('username'),
-                              task.get('completed'),
-                              task.get('title')])
+                             user.get('username'),
+                             task.get('completed'),
+                             task.get('title')])
