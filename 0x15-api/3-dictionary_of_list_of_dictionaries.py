@@ -20,11 +20,11 @@ if __name__ == "__main__":
     todo = requests.get('https://jsonplaceholder.typicode.com/todos').json()
     for task in todo:
         task_dict = {}
-        userid = task.get('userId')
-        task_dict['username'] = uname_dict.get(userid)
+        user_id = task.get('userId')
+        task_dict['username'] = uname_dict.get(user_id)
         task_dict['task'] = task.get('title')
         task_dict['completed'] = task.get('completed')
-        user_dict.get(userid).append(task_dict)
+        user_dict.get(user_id).append(task_dict)
 
-    with open('todo_all_employees.json', 'w') as jsfile:
-        json.dump(user_dict, jsfile)
+    with open('todo_all_employees.json', 'w') as jsonfile:
+        json.dump(user_dict, jsonfile)
