@@ -23,5 +23,8 @@ def top_ten(subreddit):
     response = query.json()
     v = response.get('data').get('children')
 
-    for d in v:
-        print(d.get('data').get('title'))
+    try:
+        for d in v:
+            print(d.get('data').get('title'))
+    except Exception:
+        print(None)
