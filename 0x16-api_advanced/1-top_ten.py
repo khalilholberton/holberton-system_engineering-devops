@@ -15,7 +15,7 @@ def top_ten(subreddit):
 
     URL = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit)
 
-    query = myreq.get(URL, headers=custom_user)
+    query = myreq.get(URL, headers=custom_user, allow_redirects=False)
 
     if query.status_code != 200:
         print(None)
