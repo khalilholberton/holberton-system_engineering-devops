@@ -1,14 +1,16 @@
 #!/usr/bin/python3
-"""This module contain the function recurse"""
+""" This module contain the function recurse """
 
 import requests as myreq
 
 
 def recurse(subreddit, hot_list=[], after=None):
-    """recursive function that queries the Reddit API and
+    """
+    recursive function that queries the Reddit API and
     returns a list containing the titles of all hot articles
     for a given subreddit. If no results are found for
-    the given subreddit, the function should return None"""
+    the given subreddit, the function should return None
+    """
     custom_user = {"User-agent": 'khalil'}
 
     myparams = {"after": after}
