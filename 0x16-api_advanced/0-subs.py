@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# This module contain the function number_of_subscribers
+""" This module contain the function number_of_subscribers """
 
 import requests as myreq
 
@@ -25,3 +25,4 @@ def number_of_subscribers(subreddit):
         return response.get('data').get('subscribers')
     except Exception:
         return 0
+ 
