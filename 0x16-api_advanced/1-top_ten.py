@@ -18,13 +18,16 @@ def top_ten(subreddit):
     query = myreq.get(URL, headers=custom_user, allow_redirects=False)
 
     if query.status_code != 200:
-        print(None)
+        print("None")
 
     response = query.json()
+    if 'data' not in response:
+        print("None")
+
     v = response.get('data').get('children')
 
     try:
         for d in v:
             print(d.get('data').get('title'))
     except Exception:
-        print(None)
+        print("None")
