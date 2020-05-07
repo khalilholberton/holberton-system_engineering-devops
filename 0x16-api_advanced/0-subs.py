@@ -1,4 +1,4 @@
-#!/usr/binpython3
+#!/usr/bin/python3
 # This module contain the function number_of_subscribers
 
 import requests as myreq
@@ -14,7 +14,7 @@ def number_of_subscribers(subreddit):
 
     URL = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
 
-    query = myreq.get(URL, headers=custom_user)
+    query = myreq.get(URL, headers=custom_user, allow_redirects=False)
 
     if query.status_code != 200:
         return 0
